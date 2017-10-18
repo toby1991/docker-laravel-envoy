@@ -40,3 +40,4 @@ RUN docker-php-ext-install mbstring \
 	opcache
 RUN curl --silent --show-error https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 RUN composer global require laravel/envoy -vvv
+
