@@ -2,7 +2,7 @@ FROM php:latest
 MAINTAINER Toby <t.post@hotmail.com>
 
 RUN apt-get update -yqq
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash -
+RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get install git \
 	nodejs \
 	libcurl4-gnutls-dev \
@@ -27,6 +27,10 @@ RUN apt-get install git \
 	libpcre3-dev \
 	libtidy-dev \
 	-yqq
+RUN apt-get update && apt-get install -y curl apt-transport-https && \
+    curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
+    echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
+    apt-get update && apt-get install -y yarn
 RUN docker-php-ext-install mbstring \
 	mcrypt \
 	pdo_mysql \
